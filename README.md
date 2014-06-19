@@ -1,20 +1,9 @@
-Conbo.js
-========
+Conbo.js Lite
+=============
 
-Conbo.js is a lightweight MVC application framework for JavaScript featuring extendible classes, event bus, dependency injection, data binding, context and encapsulation, command pattern and an event model which enables consistent, scoped event handling.
+Conbo.js Lite is a super lightweight (<4KB minified+gzipped) subset of the Conbo.js MVC application framework for JavaScript, featuring extendible classes and a simple event model which enables consistent, scoped event handling.
 
-Conbo.js enables JavaScript developers a take a structured, decoupled, class based approach to application development, in a way that should be be familiar to anyone with experience of languages like ActionScript or Java.
-
-Development of Conbo.js is currently focussed on its use in client side apps, including single page applications (SPA) and self-contained modules like widgets and media players, where it can be used stand-alone or as an AMD module.
-
-While Conbo.js offers a great base for server-side Node.js applications, and we've created a specific ServerApplication class for this purpose, this is not a core development focus at present.
-
-Brief History
--------------
-
-Conbo started life as a [con]text and [con]troller add-on for Back[bo]ne.js, but as more of Backbone.js was removed, replaced or updated, the project took on a life of its own and what remained of Backbone.js was merged in, and Conbo.js was born.
-
-With the exception of the base Class, the Core release of Conbo.js now contains very little code derived from Backbone.js, although method names have largely been retained for consistency and to ease the transition.
+It is designed to offer a 
 
 Extendible classes
 ------------------
@@ -31,35 +20,6 @@ var MyClass = conbo.Class.extend
 });
 ```
 
-Decoupling & data binding
--------------------------
-
-One of Conbo.js's core aims is to enable developers to create highly decoupled, testable code.
-
-To this end, the framework's ever expanding data binding features enable you to separate your HTML from your JavaScript, removing the need for direct references between the them by using `cb-*` attributes to automatically bind properties and events in the DOM to your View classes, for example:
-
-**In your View class**
-
-```javascript
-example.MyView = conbo.View.extend
-({
-	myButtonLabel: 'Click me!',
-	
-	myClickHandler: function(event)
-	{
-		alert('You clicked a button!');
-	}
-});
-```
-
-**In your HTML**
-
-```html
-<div cb-view="MyView">
-	<button cb-onclick="myClickHandler" cb-html="myButtonLabel"></button>
-</div>
-```
-
 Consistent event model
 ----------------------
 
@@ -70,18 +30,10 @@ All events fired by the framework are `conbo.ConboEvent` event objects, and you 
 Dependencies
 ------------
 
-**Client-side**: jQuery 1.7+, Lo-Dash or Underscore.js 1.4+
+None.
 
-**Server-side**: Lo-Dash or Underscore.js 1.4+
-
-We generally recommend Lo-Dash over Underscore.js because it supports AMD out of the box.
-
-Builds
-------
-
-**Core** (38KB uncompressed, 4KB minified+gzipped): Core framework for applications that don't require web service functionality baked in.
-
-**Complete** (83KB uncompressed, 9KB minified+gzipped): Complete framework, including syncable Collection, Model, History and Router derived from Backbone.js classes of the same name.
+Building
+--------
 
 Builds are created using Grunt, which requires Node.js; all required modules can be installed by running "npm install" from the command line in the project folder.
 

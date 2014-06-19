@@ -18,15 +18,6 @@ conbo.Class.prototype =
 	initialize: function() {},
 	
 	/**
-	 * Calls the specified function after the current call stack has cleared
-	 */
-	callLater: function(callback)
-	{
-		_.defer(this.proxy.apply(this, [callback].concat(_.rest(arguments))));
-		return this;
-	},
-	
-	/**
 	 * Calls the specified method on the _super object, scoped to this
 	 * @param 	methodName		String
 	 * @param	...				Zero or more additional parameters
@@ -34,45 +25,7 @@ conbo.Class.prototype =
 	callSuper: function(methodName)
 	{
 		if (!this._super[methodName]) return undefined;
-		return this._super[methodName].apply(this, _.rest(arguments));
-	},
-	
-	/**
-	 * Creates an AS3-style accessor when using an ECMAScript 5 compliant browser
-	 * (Latest Chrome, Firefox, Safari and IE9+)
-	 */
-	defineProperty: function(name, getter, setter, initialValue)
-	{
-		if (!('defineProperty' in Object)) throw new Error('Object.defineProperty is not supported by the current browser');
-		
-		getter = getter || function() { return this['_'+name]; };
-		setter = setter || function(value) { this['_'+name] = value; };
-		
-		Object.defineProperty(this, name, {enumerable:true, configurable:true, get:getter, set:setter});
-		if (initialValue !== undefined) this[name] = initialValue;
-		return this;
-	},
-	
-	/**
-	 * Creates a jQuery style, chainable property accessor
-	 * @example		obj.x(123).y(456).visible(true);
-	 */
-	defineAccessor: function(name, getter, setter, initialValue)
-	{
-		getter || (getter = function() { return this['_'+name]; });
-		setter || (setter = function(value) { this['_'+name] = value; return this; });
-		
-		this[name] = function()
-		{
-			return (!!arguments.length ? setter : getter).apply(this, arguments);
-		};
-		
-		if (initialValue !== undefined)
-		{
-			this[name](initialValue);
-		}
-		
-		return this;
+		return this._super[methodName].apply(this, _super.call(arguments, 1));
 	},
 	
 	/**
@@ -82,7 +35,7 @@ conbo.Class.prototype =
 	 */
 	proxy: function(method)
 	{
-		return _.bind.apply(_, [method, this].concat(_.rest(arguments)));
+		return _.bind.apply(_, [method, this].concat(slice.call(arguments, 1)));
 	},
 	
 	/**
@@ -91,7 +44,7 @@ conbo.Class.prototype =
 	 */
 	proxyAll: function()
 	{
-		_.bindAll.apply(_, [this].concat(_.toArray(arguments)))
+		_.bindAll.apply(_, [this].concat(slice.call(arguments)))
 		return this;
 	},
 	
@@ -104,14 +57,15 @@ conbo.Class.prototype =
 
 conbo.Class.extend = function(protoProps, staticProps)
 {
-	var child, parent=this;
+	var child,
+		parent = this;
 	
 	/**
 	 * The constructor function for the new subclass is either defined by you
 	 * (the "constructor" property in your `extend` definition), or defaulted
 	 * by us to simply call the parent's constructor.
 	 */
-	child = protoProps && _.has(protoProps, 'constructor')
+	child = protoProps && ('constructor' in protoProps)
 		? protoProps.constructor
 		: function(){ return parent.apply(this, arguments); };
 	
