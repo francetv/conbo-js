@@ -3,7 +3,7 @@ Conbo.js Lite
 
 Conbo.js Lite is a super lightweight (<4KB minified+gzipped) subset of the Conbo.js MVC application framework for JavaScript, featuring extendible classes and a simple event model which enables consistent, scoped event handling.
 
-It is designed to offer a 
+The aim of this subset is to offer the benefits of Conbo's class structure and event model to users who want to create framework independent modules and code libraries.
 
 Extendible classes
 ------------------
