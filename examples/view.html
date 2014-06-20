@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Conbo.js Lite example</title>
+</head>
+<body>
+
+<script src="../build/conbo.lite.js"></script>
+<script>
+	'use strict';
+
+	var MyView = conbo.View.extend
+	({
+		tagName: 'p',
+		
+		initialize: function(options)
+		{
+			this.el.innerHtml = "Hello Conbo!";
+		}
+	});
+	
+	var myView = new MyView();
+	
+	console.log(myView);
+	
+	document.body.appendChild(myView.el);
+</script>
+
+
+</body>
+</html>

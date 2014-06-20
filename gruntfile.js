@@ -10,7 +10,7 @@ module.exports = function (grunt)
 				{
 					"temp/conbo.lite.tmp":
 					[
-					 	"src/conbo/utils/utils.js",
+					 	"src/conbo/utils/underscore.js",
 					 	"src/conbo/core/Class.js",
 						"src/conbo/events/Event.js",
 						"src/conbo/events/ConboEvent.js",

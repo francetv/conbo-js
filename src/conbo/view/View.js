@@ -14,13 +14,14 @@ conbo.View = conbo.Bindable.extend
 	 */
 	constructor: function(options)
 	{
+		console.log("ARSE!");
+		
 		options = _.clone(options) || {};
 		
 		this._configure(options);
 		this._ensureElement();
 		
 		this.initialize.apply(this, arguments);
-		//this.render();
 	},
 	
 	/**
@@ -55,6 +56,8 @@ conbo.View = conbo.Bindable.extend
 	 */
 	setElement: function(element)
 	{
+		console.log('setElement', element);
+		
 		this.el = element;
 		return this;
 	},
