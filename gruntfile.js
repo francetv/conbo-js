@@ -17,7 +17,7 @@ module.exports = function (grunt)
 						"src/conbo/events/EventDispatcher.js",
 						"src/conbo/core/Bindable.js",
 						"src/conbo/data/Hash.js",
-						"src/conbo/view/View.js"
+						"src/conbo/view/Glimpse.js"
 					],
 					
 					"build/conbo.lite.js":
