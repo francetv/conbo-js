@@ -1,24 +1,18 @@
 /**
- * View
+ * Glimpse
  * 
- * Creating a conbo.View creates its initial element outside of the DOM,
- * if an existing element is not provided...
- * 
- * Some methods derived from the Backbone.js class of the same name
+ * A lightweight View that has no dependencies, doesn't take any options 
+ * and doesn't support data binding
  */
-conbo.View = conbo.Bindable.extend
+conbo.Glimpse = conbo.Bindable.extend
 ({
 	/**
 	 * Constructor: DO NOT override! (Use initialize instead)
 	 * @param options
 	 */
-	constructor: function(options)
+	constructor: function()
 	{
-		options = _.clone(options) || {};
-		
-		this._configure(options);
 		this._ensureElement();
-		
 		this.initialize.apply(this, arguments);
 	},
 	
@@ -50,7 +44,7 @@ conbo.View = conbo.Bindable.extend
 	},
 	
 	/**
-	 * Change the view's element (`this.el` property) and re-bind events
+	 * Change the view's element (`this.el` property)
 	 */
 	setElement: function(element)
 	{
@@ -60,33 +54,7 @@ conbo.View = conbo.Bindable.extend
 	
 	toString: function()
 	{
-		return 'conbo.View';
-	},
-	
-	/**
-	 * List of view options to be merged as properties.
-	 */
-	_viewOptions: 
-	[
-		'el', 
-		'id', 
-		'attributes', 
-		'className', 
-		'tagName', 
-	],	
-	
-	/**
-	 * Performs the initial configuration of a View with a set of options.
-	 * Keys with special meaning *(model, collection, id, className)*, are
-	 * attached directly to the view.
-	 * 
-	 * @private
-	 */
-	_configure: function(options) 
-	{
-		if (!!this.options) options = _.extend({}, this.options, options);
-		_.extend(this, _.pick(options, this._viewOptions));
-		this.options = options;
+		return 'conbo.Glimpse';
 	},
 	
 	/**
