@@ -20,11 +20,11 @@ conbo.Class.prototype =
 	/**
 	 * Calls the specified function after the current call stack has cleared
 	 */
-//	callLater: function(callback)
-//	{
-//		_.defer(this.proxy.apply(this, [callback].concat(_.rest(arguments))));
-//		return this;
-//	},
+	callLater: function(callback)
+	{
+		_.defer(this.bind.apply(this, [callback].concat(_.rest(arguments))));
+		return this;
+	},
 	
 	/**
 	 * Calls the specified method on the _super object, scoped to this
@@ -80,7 +80,7 @@ conbo.Class.prototype =
 	 * @param 	method
 	 * @returns
 	 */
-	proxy: function(method)
+	bind: function(method)
 	{
 		return _.bind.apply(_, [method, this].concat(_.rest(arguments)));
 	},
@@ -89,7 +89,7 @@ conbo.Class.prototype =
 	 * Scope all methods of this class instance to this class instance
 	 * @returns this
 	 */
-	proxyAll: function()
+	bindAll: function()
 	{
 		_.bindAll.apply(_, [this].concat(_.toArray(arguments)))
 		return this;

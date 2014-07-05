@@ -8,20 +8,20 @@
 <script src="../build/conbo.lite.js"></script>
 <script>
 	'use strict';
-
+	
 	var MyView = conbo.View.extend
 	({
 		tagName: 'p',
 		
 		initialize: function(options)
 		{
-			this.el.innerHtml = "Hello Conbo!";
+			this.el.innerHTML = "Hello Conbo!";
 		}
 	});
 	
 	var myView = new MyView();
 	
-	console.log(myView);
+	console.log(myView.el);
 	
 	document.body.appendChild(myView.el);
 </script>
